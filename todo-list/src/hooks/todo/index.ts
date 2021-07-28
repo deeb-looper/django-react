@@ -1,10 +1,13 @@
 import React from 'react';
 import { useClient } from '../client';
-import { Todo } from '../../../common/domain/entities/todo';
+import { Todo,  TodoParams } from '../../../common/domain/entities/todo';
 
 export type TodoHooks = {
     useTodoAction(): {
         fetchTodos: () => Promise<Todo[] | undefined>;
+        addTodo: (todo: TodoParams) => Promise<Todo | null>;
+        updateTodo: (id: string, todo: TodoParams) => Promise<Todo | null>;
+        deleteTodo: (id: string) => Promise<void>;
     };
 };
 
