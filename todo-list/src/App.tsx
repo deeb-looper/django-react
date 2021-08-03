@@ -64,6 +64,9 @@ const App = () => {
       onSuccess: (data: Todo[]) => {
         setTodos(data);
       },
+      onError: (error) => {
+        console.log(error, 'fetch error');
+      },
     },
   );
 
@@ -163,7 +166,7 @@ const App = () => {
     [addTodoMutate, editTodoId, updateTodoMutate],
   );
 
-  const filterTodos = todos.sort((a, b) => {
+  const filteredTodos = [...todos].sort((a, b) => {
     const d1 = new Date(a.created_at);
     const d2 = new Date(b.created_at);
     return d2.getTime() - d1.getTime();
@@ -183,7 +186,7 @@ const App = () => {
             <Suspense fallback={null}>
               <List
                 size="small"
-                dataSource={filterTodos}
+                dataSource={filteredTodos}
                 renderItem={item => (
                   <List.Item
                     actions={[
