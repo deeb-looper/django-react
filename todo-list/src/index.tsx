@@ -3,18 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'antd/dist/antd.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
+
 import { TodoHooksContext } from './hooks/todo';
+import AuthProvider from './hooks/auth/provider'
 import * as combinedTodoHooks from './hooks/todo/combined';
-import App from './App';
+
 import reportWebVitals from './reportWebVitals';
+import RootNavigator from './navigators/root/RootNavigator';
 
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <QueryClientProvider client={queryClient}>
-    <TodoHooksContext.Provider value={combinedTodoHooks}>
-      <App />
-    </TodoHooksContext.Provider>
+    <AuthProvider>
+      <TodoHooksContext.Provider value={combinedTodoHooks}>
+        <RootNavigator />
+      </TodoHooksContext.Provider>
+    </AuthProvider>
   </QueryClientProvider>,
   document.getElementById('root')
 );
