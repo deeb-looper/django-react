@@ -27,7 +27,7 @@ const ButtonWrapper = styled.div`
 
 const Login = () => {
   const { loginUser }  = useAuthAction();
-  const { setIsLoggedIn } = useAuthState();
+  const { setIsLoggedIn, setCurrentUser } = useAuthState();
   const navigate = useNavigate();
 
   const onFinish = (values: any) => {
@@ -39,8 +39,12 @@ const Login = () => {
   };
 
   const { mutate: loginUserMutate, isLoading } = useMutation((user: { email: string, password:string }) => loginUser(user), {
-    onSuccess: res => {
+    onSuccess: (res) => {
       setIsLoggedIn(true);
+      console.log(res, 'res');
+      if (res && res.user) {
+        setCurrentUser(res?.user);
+      }
     },
     onError: (error) => {
       console.log(error, 'login');

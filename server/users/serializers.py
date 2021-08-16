@@ -40,3 +40,10 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
             update_last_login(None, self.user)
 
         return data
+
+class ProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = NewUser
+        fields = ['id', 'user_name', 'email', 'start_date', 'is_active', 'is_staff']
+        read_only_field = ['is_active']

@@ -58,7 +58,7 @@ const Main = () => {
 
   const { fetchTodos, addTodo, updateTodo, deleteTodo } = useTodoAction();
   const { logoutUser } = useAuthAction();
-  const { setIsLoggedIn } = useAuthState();
+  const { setIsLoggedIn, currentUser } = useAuthState();
 
   const { refetch } = useQuery(
     `todos`,
@@ -170,13 +170,21 @@ const Main = () => {
 
   const onFinish = useCallback(
     (values: TodoParams) => {
-      if (editTodoId) {
-        updateTodoMutate({ id: editTodoId, todo: values })
-      } else {
-        addTodoMutate(values);
+
+      if (currentUser?.id) {
+        if (editTodoId) {
+          updateTodoMutate({ id: editTodoId, todo: values })
+        } else {
+          addTodoMutate({
+            ...values,
+            creator: currentUser?.id,
+          });
+        }
       }
+
+      
     },
-    [addTodoMutate, editTodoId, updateTodoMutate],
+    [addTodoMutate, editTodoId, updateTodoMutate, currentUser],
   );
 
   const onClickLogout = () => {
@@ -188,6 +196,8 @@ const Main = () => {
     const d2 = new Date(b.created_at);
     return d2.getTime() - d1.getTime();
   });
+
+  console.log(currentUser, 'currentUser');
 
   return (
     <Layout>

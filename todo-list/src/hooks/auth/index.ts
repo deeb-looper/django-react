@@ -1,16 +1,16 @@
 import React from 'react';
 import { useClient } from '../client';
-import { UserParams } from '../../../common/domain/entities/user';
+import { UserParams, AuthParams } from '../../../common/domain/entities/user';
 
 export type AuthHooks = {
     useAuthAction(): {
         registerUser: (user: UserParams) => Promise<Object | undefined>;
-        loginUser: (user: { email: string, password: string }) => Promise<Object | undefined>;
+        loginUser: (user: { email: string, password: string }) => Promise<AuthParams | undefined>;
         logoutUser: () => Promise<Object | undefined>;
     };
     useAuthState: {
         isLoggedIn: boolean;
-        currentUser: Object;
+        currentUser: { id: string; email: string; user_name: string  };
         setCurrentUser: (currentUser?: Object) => void;
         setIsLoggedIn: (isLoggedIn: boolean) => void;
     };

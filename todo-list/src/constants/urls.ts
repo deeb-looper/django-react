@@ -6,4 +6,5 @@ export default {
         login: 'user/login/',
         logout: 'user/logout/blacklist/',
     },
+    todo: 'todo/',
 }

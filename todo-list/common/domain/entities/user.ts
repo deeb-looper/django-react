@@ -6,4 +6,14 @@ export type UserParams = {
 	password: string;
 };
 
+export type AuthParams = {
+	refresh: string; 
+	access: string;
+	user: { 
+		id: string; 
+		email: string; 
+		username: string 
+	};
+};
+
 export type User = UserParams & Base;
