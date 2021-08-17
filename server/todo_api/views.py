@@ -1,7 +1,6 @@
-from django.shortcuts import render
 from .serializers import TodoSerializer
-from rest_framework import generics, viewsets
-from rest_framework.permissions import BasePermission, IsAdminUser, DjangoModelPermissions, SAFE_METHODS, IsAuthenticated
+from rest_framework import generics
+from rest_framework.permissions import BasePermission, SAFE_METHODS, IsAuthenticated
 from .models import Todo
 
 class TodoUserWritePermission(BasePermission):
@@ -13,15 +12,12 @@ class TodoUserWritePermission(BasePermission):
         return obj.creator == request.user
 
 class TodoList(generics.ListCreateAPIView):
-    # class PostList(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Todo.objects.all()
     serializer_class = TodoSerializer
 
-# Create your views here.
-class TodoView(viewsets.ModelViewSet):
-    serializer_class = TodoSerializer
-    queryset = Todo.objects.all().order_by('-created_at')
+    def get_queryset(self):
+        user = self.request.user
+        return Todo.objects.filter(creator=user)
 
 class TodoDetail(generics.RetrieveUpdateDestroyAPIView, TodoUserWritePermission):
     permission_classes = [TodoUserWritePermission]
