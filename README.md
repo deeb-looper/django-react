@@ -40,6 +40,13 @@ username: admin@email.com
 password: password
 ```
 
+## Run TodoApp API docs
+
+1. Navigate to todo-list directory ```cd todo-list```
+2. Install the dependencies ```yarn install```. Make sure yarn is already installed, if not you can refer here https://classic.yarnpkg.com/en/docs/install/#mac-stable
+3. It is recommended to install ```docsify-cli``` globally, which helps initializing and previewing the website locally. Run ```npm i docsify-cli -g``` to install it globally.
+4. Run the local server with the command ```yarn docs```.
+
 ## Built With
 * [React](https://reactjs.org) - A progressive JavaScript framework.
 * [Python](https://www.python.org/) - A programming language that lets you work quickly and integrate systems more effectively.

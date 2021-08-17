@@ -16,6 +16,7 @@
     "@types/styled-components": "^5.1.11",
     "antd": "^4.16.8",
     "axios": "^0.21.1",
+    "docsify-cli": "^4.4.3",
     "history": "^5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -30,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docs": "docsify serve docs -o -p 8080"
   },
   "eslintConfig": {
     "extends": [

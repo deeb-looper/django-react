@@ -3,4 +3,4 @@ from . import models
 
 @admin.register(models.Todo)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'completed', 'creator')
+    list_display = ('id', 'title', 'completed', 'creator', 'description')
