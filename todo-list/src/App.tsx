@@ -62,7 +62,7 @@ const App = () => {
     {
       enabled: false,
       onSuccess: (data: Todo[]) => {
-        setTodos(data);
+        setTodos(data && data.length > 0 ? data : []);
       },
       onError: (error) => {
         console.log(error, 'fetch error');
@@ -167,9 +167,7 @@ const App = () => {
   );
 
   const filteredTodos = [...todos].sort((a, b) => {
-    const d1 = new Date(a.created_at);
-    const d2 = new Date(b.created_at);
-    return d2.getTime() - d1.getTime();
+    return parseInt(b.id) - parseInt(a.id);
   });
 
   return (

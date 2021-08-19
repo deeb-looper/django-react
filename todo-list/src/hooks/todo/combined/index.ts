@@ -1,15 +1,14 @@
 import { useCallback } from 'react';
-import axios from 'axios';
+import axios from '../../../config/axios';
 import { TodoHooks } from '../index';
-import config from '../../../config/config';
 import { TodoParams } from '../../../../common/domain/entities/todo';
 
 export const useTodoAction: TodoHooks['useTodoAction'] = () => {
     const fetchTodos = useCallback(
         async () => {
             try {
-                const res = await fetch(`${config.apiUrl}/todos/`);
-                const todoList = await res.json();
+                const res = await axios.get(`todos/`);
+                const todoList = await res.data;
                 return todoList;
             } catch (e) {
                 console.log(e);
@@ -21,7 +20,7 @@ export const useTodoAction: TodoHooks['useTodoAction'] = () => {
     const addTodo = useCallback(
         async (todo: TodoParams) => {
             try {
-                const res = await axios.post(`${config.apiUrl}/todos/`,todo);
+                const res = await axios.post(`todos/`,todo);
                 return res.data;
             } catch (e) {
                 throw new Error(e);
@@ -33,7 +32,7 @@ export const useTodoAction: TodoHooks['useTodoAction'] = () => {
     const updateTodo = useCallback(
         async (id: string, todo: TodoParams) => {
             try {
-                const res = await axios.put(`${config.apiUrl}/todos/${id}/`,todo);
+                const res = await axios.put(`todos/${id}/`,todo);
                 return res.data;
             } catch (e) {
                 throw new Error(e);
@@ -45,7 +44,7 @@ export const useTodoAction: TodoHooks['useTodoAction'] = () => {
     const deleteTodo = useCallback(
         async (id: string) => {
             try {
-                await axios.delete(`${config.apiUrl}/todos/${id}/`);
+                await axios.delete(`todos/${id}/`);
             } catch (e) {
                 throw new Error(e);
             }
