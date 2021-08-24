@@ -5,16 +5,9 @@ from rest_framework_simplejwt.settings import api_settings
 from django.contrib.auth.models import update_last_login
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    """
-    Currently unused in preference of the below.
-    """
-    email = serializers.EmailField(required=True)
-    user_name = serializers.CharField(required=True)
-    password = serializers.CharField(min_length=8, write_only=True)
-
     class Meta:
         model = NewUser
-        fields = ('id', 'email', 'user_name', 'password')
+        fields = ('id', 'email', 'user_name', 'first_name', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -45,5 +38,5 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NewUser
-        fields = ['id', 'user_name', 'email', 'start_date', 'is_active', 'is_staff']
+        fields = ['id', 'user_name', 'first_name', 'email', 'start_date', 'is_active', 'is_staff']
         read_only_field = ['is_active']
