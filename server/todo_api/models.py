@@ -20,5 +20,5 @@ class Todo(TimeStampMixin):
     class Meta:
         ordering = ('-created_at',)
 
-    def _str_(self):
+    def __str__(self):
         return self.title
