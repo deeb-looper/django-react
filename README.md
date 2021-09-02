@@ -1,4 +1,4 @@
-# Introduction
+# TODO APP
 
 Simple Todo app bootstrapped with [Create React App] and Django (including the Django REST Framework for API CRUD operations).
 
@@ -39,3 +39,11 @@ password: password
 * [Python](https://www.python.org/) - A programming language that lets you work quickly and integrate systems more effectively.
 * [Django](http://djangoproject.org/) - A high-level Python Web framework that encourages rapid development and clean, pragmatic design.
 * [Django REST framework](https://www.django-rest-framework.org/) - Powerful and flexible toolkit for building Web APIs.
+
+## Branches
+
+* [master](https://github.com/deeb-looper/django-react/tree/master) - Simple Todo CRUD application made with React and Django.
+* [auth](https://github.com/deeb-looper/django-react/tree/auth) - Simple auth API with Django rest framework.
+* [basic-django](https://github.com/deeb-looper/django-react/tree/basic-django) - Basic Django application.
+* [django-react-jwt](https://github.com/deeb-looper/django-react/tree/django-react-jwt) - Simple Todo CRUD Django-react application with authentication and rest API using Django rest framework.
+* [django-rest-api](https://github.com/deeb-looper/django-react/tree/django-rest-api) - Simple Todo CRUD rest API with Django rest framework.
